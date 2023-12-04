@@ -1,5 +1,5 @@
 #include <Wire.h>
-#define MEASURE 13
+#define MEASURE 130
 #define RST_CO2 15
 #define WAK_PIN1 16
 #define WAK_PIN2 26
@@ -8,12 +8,14 @@
 #define SCL 22
 #define ADD1 2
 #define ADD2 4
-#define ADD3 12
+#define ADD3 13
+#define INT3 35
 void setup() {
   Wire.begin();
   pinMode(ADD1,OUTPUT);
   pinMode(ADD2,OUTPUT);
   pinMode(ADD3,OUTPUT);
+  //pinMode(INT3,INPUT);
   pinMode(MEASURE,OUTPUT);
   pinMode(RST_CO2,OUTPUT);
   pinMode(WAK_PIN1,OUTPUT);
@@ -22,17 +24,17 @@ void setup() {
   //Serial.println("1");
   Serial.begin(115200);
   Serial.println("\nI2C Scanner");
-digitalWrite(MEASURE, HIGH);
-digitalWrite(2, HIGH);
-digitalWrite(WAK_PIN1, HIGH);
-digitalWrite(WAK_PIN2, HIGH);
-digitalWrite(WAK_PIN3, HIGH);
-digitalWrite(RST_CO2, LOW);
-delay(100);
-digitalWrite(RST_CO2, HIGH);
-digitalWrite(ADD3,LOW);
+  //digitalWrite(MEASURE, HIGH);
+  digitalWrite(WAK_PIN1, HIGH);
+  digitalWrite(WAK_PIN2, HIGH);
+  digitalWrite(WAK_PIN3, HIGH);
+  //digitalWrite(INT3,HIGH);
+  digitalWrite(RST_CO2, LOW);
+  delay(100);
+  digitalWrite(RST_CO2, HIGH);
+  digitalWrite(ADD3,LOW);
   Wire.begin(SDA, SCL);
-Wire.setClock(1000);
+  //Wire.setClock(1000);
 }
  
 void loop() {
