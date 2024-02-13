@@ -1,5 +1,6 @@
 #include <DFRobot_ENS160.h>
 
+
 #define I2C_COMMUNICATION 
 #ifdef  I2C_COMMUNICATION
   /**
@@ -15,9 +16,21 @@
   DFRobot_ENS160_SPI ENS160(&SPI, csPin);
 #endif
 
+#define MEASURE 13
+#define WAK_PIN3 27
+
 
 void setup(void)
 {
+  pinMode(MEASURE,OUTPUT);
+  digitalWrite(MEASURE, HIGH);
+  
+  pinMode(WAK_PIN3,OUTPUT);
+  digitalWrite(WAK_PIN3, HIGH);
+
+
+  
+
   Serial.begin(115200);
 
   // Init the sensor
