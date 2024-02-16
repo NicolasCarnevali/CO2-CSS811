@@ -7,6 +7,8 @@
    *   For Fermion version, the default I2C address is 0x53, connect SDO pin to GND and I2C address will be 0x52
    */
   DFRobot_ENS160_I2C ENS160(&Wire, /*I2CAddr*/ 0x53);
+  //POUR avoir la mesure du 2eme capteur il faut mettre l'adress a 0x52
+  //DFRobot_ENS160_I2C ENS160(&Wire, /*I2CAddr*/ 0x53);
 #else
   /**
    * Set up digital pin according to the on-board pin connected with SPI chip-select pin
@@ -17,19 +19,35 @@
 #endif
 
 #define MEASURE 13
+#define RST_CO2 150
+#define WAK_PIN1 16
+#define WAK_PIN2 26
 #define WAK_PIN3 27
-
-
+#define SDA 21
+#define SCL 22
+#define ADD1 15
+#define ADD2 12
+#define ADD3 4
+#define INT3 17
 void setup(void)
 {
   pinMode(MEASURE,OUTPUT);
   digitalWrite(MEASURE, HIGH);
-  
+  pinMode(ADD1,OUTPUT);
+  pinMode(ADD2,OUTPUT);
+  pinMode(ADD3,OUTPUT);
+  pinMode(INT3,INPUT);
+  pinMode(MEASURE,OUTPUT);
+  pinMode(RST_CO2,OUTPUT);
+  pinMode(WAK_PIN1,OUTPUT);
+  pinMode(WAK_PIN2,OUTPUT);
   pinMode(WAK_PIN3,OUTPUT);
-  digitalWrite(WAK_PIN3, HIGH);
-
-
-  
+ //Activer juste le capteur 1 en passant sa pin CS en 1 et le mettre la pin CS a 0 (SPI) pour le capteur 3
+  digitalWrite(WAK_PIN1, HIGH);
+  digitalWrite(WAK_PIN2, LOW);
+  digitalWrite(WAK_PIN3, LOW);
+  pinMode(ADD2,OUTPUT);
+  digitalWrite(ADD2,LOW);
 
   Serial.begin(115200);
 
