@@ -18,35 +18,32 @@
   DFRobot_ENS160_SPI ENS160(&SPI, csPin);
 #endif
 
-#define MEASURE 13
-#define RST_CO2 150
-#define WAK_PIN1 16
-#define WAK_PIN2 26
-#define WAK_PIN3 27
+#define MEASURE 13 
+#define RST_CO2 15
+#define CS1 16
+#define CS2 26
+#define CS3 27
 #define SDA 21
 #define SCL 22
 #define ADD1 15
 #define ADD2 12
 #define ADD3 4
-#define INT3 17
 void setup(void)
 {
   pinMode(MEASURE,OUTPUT);
-  digitalWrite(MEASURE, HIGH);
+  // Il faut toujours mettre measure au niveau haut pour alimenter les capteurs
+  digitalWrite(MEASURE, HIGH); 
   pinMode(ADD1,OUTPUT);
   pinMode(ADD2,OUTPUT);
   pinMode(ADD3,OUTPUT);
-  pinMode(INT3,INPUT);
-  pinMode(MEASURE,OUTPUT);
   pinMode(RST_CO2,OUTPUT);
-  pinMode(WAK_PIN1,OUTPUT);
-  pinMode(WAK_PIN2,OUTPUT);
-  pinMode(WAK_PIN3,OUTPUT);
+  pinMode(CS1,OUTPUT);
+  pinMode(CS2,OUTPUT);
+  pinMode(CS3,OUTPUT);
  //Activer juste le capteur 1 en passant sa pin CS en 1 et le mettre la pin CS a 0 (SPI) pour le capteur 3
-  digitalWrite(WAK_PIN1, HIGH);
-  digitalWrite(WAK_PIN2, LOW);
-  digitalWrite(WAK_PIN3, LOW);
-  pinMode(ADD2,OUTPUT);
+  digitalWrite(CS1, HIGH);
+  digitalWrite(CS2, LOW);
+  digitalWrite(CS3, LOW);
   digitalWrite(ADD2,LOW);
 
   Serial.begin(115200);
