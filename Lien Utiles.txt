@@ -1,0 +1,3 @@
+https://github.com/sparkfun/SparkFun_I2C_Mux_Arduino_Library/blob/master/examples/Example2_DualDistance/Example2_DualDistance.ino 
+
+---> Potentielle architecture de code pour faire des mesures avec différent capteurs 
